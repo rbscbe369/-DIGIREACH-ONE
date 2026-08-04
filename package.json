@@ -4,14 +4,24 @@
   "private": true,
   "description": "DIGIREACH ONE Enterprise Monorepo",
   "scripts": {
-    "build": "turbo run build",
     "dev": "turbo run dev",
+    "build": "turbo run build",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "format": "turbo run format",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "prepare": "husky",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "verify": "pnpm check && pnpm build"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=8"
+    "node": "20.x",
+    "pnpm": "10.x.x"
   },
-  "packageManager": "pnpm@9.0.0"
+  "packageManager": "pnpm@10.x.x",
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.0"
+  }
 }

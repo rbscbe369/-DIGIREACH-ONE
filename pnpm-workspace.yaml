@@ -1,3 +1,6 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+
+catalog:
+  # Define shared dependencies here (e.g., typescript: "^5.5.0")
