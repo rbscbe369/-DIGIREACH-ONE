@@ -11,6 +11,7 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "clean": "turbo run clean",
+    "generate": "turbo gen",
     "prepare": "husky",
     "check": "pnpm lint && pnpm typecheck && pnpm test",
     "verify": "pnpm check && pnpm build"
@@ -31,6 +32,9 @@
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.0",
     "turbo": "^2.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "@turbo/gen": "^2.0.0",
+    "vitest": "^2.0.0",
+    "@vitest/coverage-v8": "^2.0.0"
   }
 }
