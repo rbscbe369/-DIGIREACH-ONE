@@ -2,5 +2,9 @@ packages:
   - 'apps/*'
   - 'packages/*'
 
+allowBuilds:
+  esbuild: set this to true or false
+
 catalog:
-  # Define shared dependencies here (e.g., typescript: "^5.5.0")
+  typescript: "^5.5.0"
+  tsx: "^4.7.0"

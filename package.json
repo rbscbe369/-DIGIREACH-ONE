@@ -2,6 +2,7 @@
   "name": "@digireach-one/monorepo",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@11.9.0",
   "description": "DIGIREACH ONE Enterprise Monorepo",
   "scripts": {
     "dev": "turbo run dev",
@@ -16,11 +17,6 @@
     "check": "pnpm lint && pnpm typecheck && pnpm test",
     "verify": "pnpm check && pnpm build"
   },
-  "engines": {
-    "node": "20.x",
-    "pnpm": "10.x.x"
-  },
-  "packageManager": "pnpm@10.x.x",
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
@@ -38,5 +34,10 @@
     "@turbo/gen": "^2.0.0",
     "vitest": "^2.0.0",
     "@vitest/coverage-v8": "^2.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
