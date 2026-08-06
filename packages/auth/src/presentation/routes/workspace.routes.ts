@@ -10,9 +10,9 @@ export async function workspaceRoutes(app: FastifyInstance) {
     url: '/',
     schema: {
       tags: ['Workspaces'],
-      summary: 'Workspace GET /'
+      summary: 'Workspace GET /',
     },
-    handler: WorkspaceController.list
+    handler: WorkspaceController.list,
   });
 
   fastify.route({
@@ -20,8 +20,8 @@ export async function workspaceRoutes(app: FastifyInstance) {
     url: '/switch',
     schema: {
       tags: ['Workspaces'],
-      summary: 'Workspace POST /switch'
+      summary: 'Workspace POST /switch',
     },
-    handler: WorkspaceController.create
+    handler: WorkspaceController.create,
   });
 }

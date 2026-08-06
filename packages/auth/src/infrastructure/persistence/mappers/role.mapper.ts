@@ -4,12 +4,19 @@ import { RoleId, OrganizationId, PermissionId } from '../../../domain/value-obje
 
 export class RoleMapper {
   static toDomain(raw: RoleModel): Role {
-    const permIds = Array.isArray(raw.permissions) ? raw.permissions.map((p: unknown) => new PermissionId((p as Record<string, unknown>).permissionId as string || p as string)) : [];
+    const permIds = Array.isArray(raw.permissions)
+      ? raw.permissions.map(
+          (p: unknown) =>
+            new PermissionId(
+              ((p as Record<string, unknown>).permissionId as string) || (p as string),
+            ),
+        )
+      : [];
     return new Role(
       new RoleId(raw.id),
       raw.organizationId ? new OrganizationId(raw.organizationId) : null,
       raw.name,
-      permIds
+      permIds,
     );
   }
 
@@ -18,7 +25,7 @@ export class RoleMapper {
       id: role.id.value,
       organizationId: role.organizationId ? role.organizationId.value : null,
       name: role.name,
-      permissions: role.permissions.map(p => p.value)
+      permissions: role.permissions.map((p) => p.value),
     };
   }
 }

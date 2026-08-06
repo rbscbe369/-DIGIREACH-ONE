@@ -12,14 +12,18 @@ export class StartSessionUseCase {
     private readonly sessionRepository: ISessionRepository,
     private readonly deviceRepository: IDeviceRepository,
     private readonly idGenerator: IIdGenerator,
-    private readonly eventPublisher: IEventPublisher
+    private readonly eventPublisher: IEventPublisher,
   ) {}
 
   async execute(command: StartSessionCommand): Promise<string> {
     const userId = new UserId(command.userId);
     let device = await this.deviceRepository.findByFingerprint(userId, command.deviceFingerprint);
     if (!device) {
-      device = new Device(new DeviceId(this.idGenerator.generate()), userId, command.deviceFingerprint);
+      device = new Device(
+        new DeviceId(this.idGenerator.generate()),
+        userId,
+        command.deviceFingerprint,
+      );
       await this.deviceRepository.save(device);
     }
 

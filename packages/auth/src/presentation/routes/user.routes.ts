@@ -10,9 +10,9 @@ export async function userRoutes(app: FastifyInstance) {
     url: '/:id',
     schema: {
       tags: ['Users'],
-      summary: 'User GET /:id'
+      summary: 'User GET /:id',
     },
-    handler: UserController.getById
+    handler: UserController.getById,
   });
 
   fastify.route({
@@ -20,9 +20,9 @@ export async function userRoutes(app: FastifyInstance) {
     url: '/',
     schema: {
       tags: ['Users'],
-      summary: 'User POST /'
+      summary: 'User POST /',
     },
-    handler: UserController.create
+    handler: UserController.create,
   });
 
   fastify.route({
@@ -30,9 +30,9 @@ export async function userRoutes(app: FastifyInstance) {
     url: '/:id',
     schema: {
       tags: ['Users'],
-      summary: 'User PATCH /:id'
+      summary: 'User PATCH /:id',
     },
-    handler: UserController.update
+    handler: UserController.update,
   });
 
   fastify.route({
@@ -40,8 +40,8 @@ export async function userRoutes(app: FastifyInstance) {
     url: '/:id',
     schema: {
       tags: ['Users'],
-      summary: 'User DELETE /:id'
+      summary: 'User DELETE /:id',
     },
-    handler: UserController.delete
+    handler: UserController.delete,
   });
 }

@@ -1,4 +1,3 @@
-
 export * from './interfaces/i-clock.interface';
 export * from './interfaces/i-id-generator.interface';
 export * from './interfaces/i-event-publisher.interface';

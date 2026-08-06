@@ -10,9 +10,9 @@ export async function sessionRoutes(app: FastifyInstance) {
     url: '/',
     schema: {
       tags: ['Sessions'],
-      summary: 'Session GET /'
+      summary: 'Session GET /',
     },
-    handler: SessionController.list
+    handler: SessionController.list,
   });
 
   fastify.route({
@@ -20,8 +20,8 @@ export async function sessionRoutes(app: FastifyInstance) {
     url: '/:id',
     schema: {
       tags: ['Sessions'],
-      summary: 'Session DELETE /:id'
+      summary: 'Session DELETE /:id',
     },
-    handler: SessionController.delete
+    handler: SessionController.delete,
   });
 }

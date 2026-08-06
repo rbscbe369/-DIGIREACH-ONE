@@ -11,7 +11,7 @@ import { permissionRoutes } from './routes/permission.routes';
 
 export async function buildApp() {
   const app = Fastify({
-    logger: true
+    logger: true,
   });
 
   // Zod compilers
@@ -31,14 +31,17 @@ export async function buildApp() {
   await configureOpenApi(app);
 
   // Register Routes
-  app.register(async (api) => {
-    await api.register(userRoutes, { prefix: '/users' });
-    await api.register(organizationRoutes, { prefix: '/organizations' });
-    await api.register(workspaceRoutes, { prefix: '/workspaces' });
-    await api.register(sessionRoutes, { prefix: '/sessions' });
-    await api.register(roleRoutes, { prefix: '/roles' });
-    await api.register(permissionRoutes, { prefix: '/permissions' });
-  }, { prefix: '/api/v1/identity' });
+  app.register(
+    async (api) => {
+      await api.register(userRoutes, { prefix: '/users' });
+      await api.register(organizationRoutes, { prefix: '/organizations' });
+      await api.register(workspaceRoutes, { prefix: '/workspaces' });
+      await api.register(sessionRoutes, { prefix: '/sessions' });
+      await api.register(roleRoutes, { prefix: '/roles' });
+      await api.register(permissionRoutes, { prefix: '/permissions' });
+    },
+    { prefix: '/api/v1/identity' },
+  );
 
   return app;
 }

@@ -11,7 +11,7 @@ export class AuditLog extends Entity<AuditLogId> {
     public readonly targetEntityId: string,
     public readonly targetEntityType: string,
     public readonly timestamp: Date,
-    public readonly ipAddress: string
+    public readonly ipAddress: string,
   ) {
     super(id);
     // Audit logs are strictly immutable. No mutable state is defined.

@@ -3,12 +3,31 @@ export interface ITransactionContext {
 }
 
 export interface IPrismaDelegate<T> {
-  findUnique(args: { where: Record<string, unknown>, include?: Record<string, unknown> }): Promise<T | null>;
-  findFirst(args: { where: Record<string, unknown>, include?: Record<string, unknown> }): Promise<T | null>;
-  findMany(args?: { where?: Record<string, unknown>, take?: number, skip?: number, orderBy?: Record<string, unknown>, include?: Record<string, unknown> }): Promise<T[]>;
+  findUnique(args: {
+    where: Record<string, unknown>;
+    include?: Record<string, unknown>;
+  }): Promise<T | null>;
+  findFirst(args: {
+    where: Record<string, unknown>;
+    include?: Record<string, unknown>;
+  }): Promise<T | null>;
+  findMany(args?: {
+    where?: Record<string, unknown>;
+    take?: number;
+    skip?: number;
+    orderBy?: Record<string, unknown>;
+    include?: Record<string, unknown>;
+  }): Promise<T[]>;
   create(args: { data: T }): Promise<T>;
-  updateMany(args: { where: Record<string, unknown>, data: Record<string, unknown> }): Promise<void>;
-  upsert(args: { where: Record<string, unknown>, update: Partial<T> | Record<string, unknown>, create: T | Record<string, unknown> }): Promise<T>;
+  updateMany(args: {
+    where: Record<string, unknown>;
+    data: Record<string, unknown>;
+  }): Promise<void>;
+  upsert(args: {
+    where: Record<string, unknown>;
+    update: Partial<T> | Record<string, unknown>;
+    create: T | Record<string, unknown>;
+  }): Promise<T>;
 }
 
 export interface IPrismaClient {

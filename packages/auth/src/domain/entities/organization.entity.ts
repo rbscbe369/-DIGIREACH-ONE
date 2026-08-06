@@ -5,23 +5,25 @@ import { InvalidOrganizationStateException } from '../exceptions/organization.ex
 export enum OrganizationStatus {
   ACTIVE = 'ACTIVE',
   SUSPENDED = 'SUSPENDED',
-  DELETED = 'DELETED'
+  DELETED = 'DELETED',
 }
 
 export class Organization extends Entity<OrganizationId> {
   private _status: OrganizationStatus;
-  
+
   constructor(
     id: OrganizationId,
     public readonly name: string,
     public readonly slug: string,
-    status: OrganizationStatus = OrganizationStatus.ACTIVE
+    status: OrganizationStatus = OrganizationStatus.ACTIVE,
   ) {
     super(id);
     this._status = status;
   }
 
-  get status(): OrganizationStatus { return this._status; }
+  get status(): OrganizationStatus {
+    return this._status;
+  }
 
   public suspend(_reason: string): void {
     if (this._status === OrganizationStatus.DELETED) {

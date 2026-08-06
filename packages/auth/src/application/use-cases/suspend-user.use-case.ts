@@ -6,7 +6,7 @@ import { UserId } from '../../domain/value-objects/id.vo';
 export class SuspendUserUseCase {
   constructor(
     private readonly userRepository: IUserRepository,
-    private readonly eventPublisher: IEventPublisher
+    private readonly eventPublisher: IEventPublisher,
   ) {}
 
   async execute(command: SuspendUserCommand): Promise<void> {

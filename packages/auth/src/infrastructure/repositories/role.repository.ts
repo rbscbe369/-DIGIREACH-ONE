@@ -10,19 +10,27 @@ export class RoleRepository extends BaseRepository<Role, RoleId> implements IRol
     super(prisma);
   }
 
-
   async findById(id: RoleId): Promise<Role | null> {
-    const data = await this.prisma.role.findUnique({ where: { id: id.value }, include: { permissions: true } });
+    const data = await this.prisma.role.findUnique({
+      where: { id: id.value },
+      include: { permissions: true },
+    });
     return data ? RoleMapper.toDomain(data) : null;
   }
 
   async findSystemRoles(): Promise<Role[]> {
-    const data = await this.prisma.role.findMany({ where: { organizationId: null }, include: { permissions: true } });
+    const data = await this.prisma.role.findMany({
+      where: { organizationId: null },
+      include: { permissions: true },
+    });
     return data.map((d: RoleModel) => RoleMapper.toDomain(d));
   }
 
   async findByOrganization(orgId: OrganizationId): Promise<Role[]> {
-    const data = await this.prisma.role.findMany({ where: { organizationId: orgId.value }, include: { permissions: true } });
+    const data = await this.prisma.role.findMany({
+      where: { organizationId: orgId.value },
+      include: { permissions: true },
+    });
     return data.map((d: RoleModel) => RoleMapper.toDomain(d));
   }
 
@@ -31,7 +39,7 @@ export class RoleRepository extends BaseRepository<Role, RoleId> implements IRol
     await this.prisma.role.upsert({
       where: { id: data.id },
       update: { name: data.name },
-      create: { id: data.id, organizationId: data.organizationId, name: data.name }
+      create: { id: data.id, organizationId: data.organizationId, name: data.name },
     });
   }
 }

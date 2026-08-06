@@ -10,8 +10,8 @@ export async function permissionRoutes(app: FastifyInstance) {
     url: '/',
     schema: {
       tags: ['Permissions'],
-      summary: 'Permission GET /'
+      summary: 'Permission GET /',
     },
-    handler: PermissionController.list
+    handler: PermissionController.list,
   });
 }

@@ -5,11 +5,13 @@ import { Organization } from '../../domain/entities/organization.entity';
 import { OrganizationId } from '../../domain/value-objects/id.vo';
 import { OrganizationMapper } from '../persistence/mappers/organization.mapper';
 
-export class OrganizationRepository extends BaseRepository<Organization, OrganizationId> implements IOrganizationRepository {
+export class OrganizationRepository
+  extends BaseRepository<Organization, OrganizationId>
+  implements IOrganizationRepository
+{
   constructor(prisma: IPrismaClient) {
     super(prisma);
   }
-
 
   async findById(id: OrganizationId): Promise<Organization | null> {
     const data = await this.prisma.organization.findUnique({ where: { id: id.value } });
@@ -26,7 +28,7 @@ export class OrganizationRepository extends BaseRepository<Organization, Organiz
     await this.prisma.organization.upsert({
       where: { id: data.id },
       update: data,
-      create: data
+      create: data,
     });
   }
 }

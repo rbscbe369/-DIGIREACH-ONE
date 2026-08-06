@@ -3,7 +3,9 @@ export abstract class DomainException extends Error {
     super(message);
     this.name = this.constructor.name;
     if ('captureStackTrace' in Error) {
-      (Error as unknown as { captureStackTrace: (target: unknown, constructor: unknown) => void }).captureStackTrace(this, DomainException);
+      (
+        Error as unknown as { captureStackTrace: (target: unknown, constructor: unknown) => void }
+      ).captureStackTrace(this, DomainException);
     }
   }
 }

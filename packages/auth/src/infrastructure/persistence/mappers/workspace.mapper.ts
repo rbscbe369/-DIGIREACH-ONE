@@ -1,6 +1,11 @@
 import { WorkspaceModel } from '../prisma/interfaces';
 import { Workspace } from '../../../domain/entities/workspace.entity';
-import { WorkspaceId, UserId, HierarchyNodeId, PersonaId } from '../../../domain/value-objects/id.vo';
+import {
+  WorkspaceId,
+  UserId,
+  HierarchyNodeId,
+  PersonaId,
+} from '../../../domain/value-objects/id.vo';
 
 export class WorkspaceMapper {
   static toDomain(raw: WorkspaceModel): Workspace {
@@ -9,7 +14,7 @@ export class WorkspaceMapper {
       new UserId(raw.userId),
       new HierarchyNodeId(raw.hierarchyNodeId),
       new PersonaId(raw.personaId),
-      raw.isActive
+      raw.isActive,
     );
   }
 
@@ -19,7 +24,7 @@ export class WorkspaceMapper {
       userId: ws.userId.value,
       hierarchyNodeId: ws.hierarchyNodeId.value,
       personaId: ws.personaId.value,
-      isActive: ws.isActive
+      isActive: ws.isActive,
     };
   }
 }

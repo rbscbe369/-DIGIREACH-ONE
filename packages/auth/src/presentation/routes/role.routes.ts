@@ -10,8 +10,8 @@ export async function roleRoutes(app: FastifyInstance) {
     url: '/',
     schema: {
       tags: ['Roles'],
-      summary: 'Role GET /'
+      summary: 'Role GET /',
     },
-    handler: RoleController.list
+    handler: RoleController.list,
   });
 }

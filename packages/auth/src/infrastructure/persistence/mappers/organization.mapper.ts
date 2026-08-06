@@ -8,7 +8,7 @@ export class OrganizationMapper {
       new OrganizationId(raw.id),
       raw.name,
       raw.slug,
-      raw.status as OrganizationStatus
+      raw.status as OrganizationStatus,
     );
   }
 
@@ -17,7 +17,7 @@ export class OrganizationMapper {
       id: org.id.value,
       name: org.name,
       slug: org.slug,
-      status: org.status
+      status: org.status,
     };
   }
 }

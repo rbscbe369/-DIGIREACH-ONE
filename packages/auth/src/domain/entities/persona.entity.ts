@@ -8,14 +8,14 @@ export class Persona extends Entity<PersonaId> {
     id: PersonaId,
     public readonly organizationId: OrganizationId,
     public readonly name: string,
-    roleIds: RoleId[] = []
+    roleIds: RoleId[] = [],
   ) {
     super(id);
-    this._roles = new Set(roleIds.map(r => r.value));
+    this._roles = new Set(roleIds.map((r) => r.value));
   }
 
   get roles(): RoleId[] {
-    return Array.from(this._roles).map(val => new RoleId(val));
+    return Array.from(this._roles).map((val) => new RoleId(val));
   }
 
   public assignRole(roleId: RoleId): void {

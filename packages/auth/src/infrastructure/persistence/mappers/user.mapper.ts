@@ -9,7 +9,7 @@ export class UserMapper {
       new UserId(raw.id),
       new OrganizationId(raw.organizationId),
       new EmailAddress(raw.email),
-      raw.status as UserStatus
+      raw.status as UserStatus,
     );
   }
 
@@ -18,7 +18,7 @@ export class UserMapper {
       id: user.id.value,
       organizationId: user.organizationId.value,
       email: user.email.value,
-      status: user.status
+      status: user.status,
     };
   }
 }

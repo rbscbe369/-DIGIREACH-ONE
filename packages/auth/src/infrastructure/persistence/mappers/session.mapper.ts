@@ -10,7 +10,7 @@ export class SessionMapper {
       new DeviceId(raw.deviceId),
       new WorkspaceId(raw.workspaceId),
       new Date(raw.expiresAt),
-      raw.status as SessionStatus
+      raw.status as SessionStatus,
     );
   }
 
@@ -21,7 +21,7 @@ export class SessionMapper {
       deviceId: session.deviceId.value,
       workspaceId: session.workspaceId.value,
       expiresAt: session.expiresAt.toISOString(),
-      status: session.status
+      status: session.status,
     };
   }
 }

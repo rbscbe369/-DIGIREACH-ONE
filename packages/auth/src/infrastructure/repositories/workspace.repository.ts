@@ -5,11 +5,13 @@ import { Workspace } from '../../domain/entities/workspace.entity';
 import { WorkspaceId, UserId, HierarchyNodeId } from '../../domain/value-objects/id.vo';
 import { WorkspaceMapper } from '../persistence/mappers/workspace.mapper';
 
-export class WorkspaceRepository extends BaseRepository<Workspace, WorkspaceId> implements IWorkspaceRepository {
+export class WorkspaceRepository
+  extends BaseRepository<Workspace, WorkspaceId>
+  implements IWorkspaceRepository
+{
   constructor(prisma: IPrismaClient) {
     super(prisma);
   }
-
 
   async findById(id: WorkspaceId): Promise<Workspace | null> {
     const data = await this.prisma.workspace.findUnique({ where: { id: id.value } });
@@ -23,7 +25,7 @@ export class WorkspaceRepository extends BaseRepository<Workspace, WorkspaceId> 
 
   async findByUserAndNode(userId: UserId, nodeId: HierarchyNodeId): Promise<Workspace | null> {
     const data = await this.prisma.workspace.findFirst({
-      where: { userId: userId.value, hierarchyNodeId: nodeId.value }
+      where: { userId: userId.value, hierarchyNodeId: nodeId.value },
     });
     return data ? WorkspaceMapper.toDomain(data) : null;
   }
@@ -33,7 +35,7 @@ export class WorkspaceRepository extends BaseRepository<Workspace, WorkspaceId> 
     await this.prisma.workspace.upsert({
       where: { id: data.id },
       update: data,
-      create: data
+      create: data,
     });
   }
 }

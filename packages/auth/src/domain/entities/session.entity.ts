@@ -5,26 +5,30 @@ import { SessionStarted, SessionEnded } from '../events/session.events';
 export enum SessionStatus {
   ACTIVE = 'ACTIVE',
   TERMINATED = 'TERMINATED',
-  EXPIRED = 'EXPIRED'
+  EXPIRED = 'EXPIRED',
 }
 
 export class Session extends Entity<SessionId> {
   private _status: SessionStatus;
-  
+
   constructor(
     id: SessionId,
     public readonly userId: UserId,
     public readonly deviceId: DeviceId,
     public readonly workspaceId: WorkspaceId,
     public readonly expiresAt: Date,
-    status: SessionStatus = SessionStatus.ACTIVE
+    status: SessionStatus = SessionStatus.ACTIVE,
   ) {
     super(id);
     this._status = status;
   }
 
   public static start(
-    id: SessionId, userId: UserId, deviceId: DeviceId, workspaceId: WorkspaceId, ttlMinutes: number
+    id: SessionId,
+    userId: UserId,
+    deviceId: DeviceId,
+    workspaceId: WorkspaceId,
+    ttlMinutes: number,
   ): Session {
     const expiresAt = new Date();
     expiresAt.setMinutes(expiresAt.getMinutes() + ttlMinutes);

@@ -2,6 +2,6 @@ export class SuspendUserCommand {
   constructor(
     public readonly userId: string,
     public readonly reason: string,
-    public readonly adminUserId: string
+    public readonly adminUserId: string,
   ) {}
 }

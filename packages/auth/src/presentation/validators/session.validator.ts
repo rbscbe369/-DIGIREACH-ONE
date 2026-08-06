@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const SessionPathParamsSchema = z.object({
-  id: z.string().min(1, 'ID is required')
+  id: z.string().min(1, 'ID is required'),
 });
 
 export const CreateSessionBodySchema = z.object({
@@ -9,10 +9,10 @@ export const CreateSessionBodySchema = z.object({
 });
 
 export const UpdateSessionBodySchema = z.object({
-  name: z.string().min(1).optional()
+  name: z.string().min(1).optional(),
 });
 
 export const SessionQuerySchema = z.object({
   page: z.string().optional(),
-  limit: z.string().optional()
+  limit: z.string().optional(),
 });

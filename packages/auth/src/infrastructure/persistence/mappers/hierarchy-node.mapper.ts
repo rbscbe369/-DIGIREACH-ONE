@@ -10,7 +10,7 @@ export class HierarchyNodeMapper {
       raw.name,
       raw.nodeType,
       raw.parentNodeId ? new HierarchyNodeId(raw.parentNodeId) : null,
-      raw.isActive
+      raw.isActive,
     );
   }
 
@@ -21,7 +21,7 @@ export class HierarchyNodeMapper {
       name: node.name,
       nodeType: node.nodeType,
       parentNodeId: node.parentNodeId ? node.parentNodeId.value : null,
-      isActive: node.isActive
+      isActive: node.isActive,
     };
   }
 }

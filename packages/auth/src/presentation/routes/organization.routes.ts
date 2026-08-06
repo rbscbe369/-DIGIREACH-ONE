@@ -10,9 +10,9 @@ export async function organizationRoutes(app: FastifyInstance) {
     url: '/:id',
     schema: {
       tags: ['Organizations'],
-      summary: 'Organization GET /:id'
+      summary: 'Organization GET /:id',
     },
-    handler: OrganizationController.getById
+    handler: OrganizationController.getById,
   });
 
   fastify.route({
@@ -20,8 +20,8 @@ export async function organizationRoutes(app: FastifyInstance) {
     url: '/',
     schema: {
       tags: ['Organizations'],
-      summary: 'Organization POST /'
+      summary: 'Organization POST /',
     },
-    handler: OrganizationController.create
+    handler: OrganizationController.create,
   });
 }

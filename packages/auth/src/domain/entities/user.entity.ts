@@ -8,7 +8,7 @@ export enum UserStatus {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',
   SUSPENDED = 'SUSPENDED',
-  OFFBOARDED = 'OFFBOARDED'
+  OFFBOARDED = 'OFFBOARDED',
 }
 
 export class User extends Entity<UserId> {
@@ -18,7 +18,7 @@ export class User extends Entity<UserId> {
     id: UserId,
     public readonly organizationId: OrganizationId,
     public readonly email: EmailAddress,
-    status: UserStatus = UserStatus.PENDING
+    status: UserStatus = UserStatus.PENDING,
   ) {
     super(id);
     this._status = status;
@@ -30,7 +30,9 @@ export class User extends Entity<UserId> {
     return user;
   }
 
-  get status(): UserStatus { return this._status; }
+  get status(): UserStatus {
+    return this._status;
+  }
 
   public activate(): void {
     if (this._status !== UserStatus.PENDING && this._status !== UserStatus.SUSPENDED) return;

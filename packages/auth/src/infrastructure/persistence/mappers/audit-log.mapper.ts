@@ -13,7 +13,7 @@ export class AuditLogMapper {
       raw.targetEntityId,
       raw.targetEntityType,
       new Date(raw.timestamp),
-      raw.ipAddress
+      raw.ipAddress,
     );
   }
 
@@ -27,7 +27,7 @@ export class AuditLogMapper {
       targetEntityId: log.targetEntityId,
       targetEntityType: log.targetEntityType,
       timestamp: log.timestamp.toISOString(),
-      ipAddress: log.ipAddress
+      ipAddress: log.ipAddress,
     };
   }
 }

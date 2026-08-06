@@ -1,4 +1,3 @@
-
 export * from './persistence/mappers/user.mapper';
 export * from './persistence/mappers/organization.mapper';
 export * from './persistence/mappers/workspace.mapper';

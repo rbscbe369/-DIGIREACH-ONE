@@ -4,7 +4,10 @@ import { UserId, OrganizationId } from '../value-objects/id.vo';
 export class UserCreated implements DomainEvent {
   public readonly occurredOn = new Date();
   public readonly eventName = 'UserCreated';
-  constructor(public readonly userId: UserId, public readonly organizationId: OrganizationId) {}
+  constructor(
+    public readonly userId: UserId,
+    public readonly organizationId: OrganizationId,
+  ) {}
 }
 
 export class UserActivated implements DomainEvent {
@@ -16,5 +19,8 @@ export class UserActivated implements DomainEvent {
 export class UserSuspended implements DomainEvent {
   public readonly occurredOn = new Date();
   public readonly eventName = 'UserSuspended';
-  constructor(public readonly userId: UserId, public readonly reason: string) {}
+  constructor(
+    public readonly userId: UserId,
+    public readonly reason: string,
+  ) {}
 }

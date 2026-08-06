@@ -3,6 +3,6 @@ export class AssignWorkspaceCommand {
     public readonly userId: string,
     public readonly hierarchyNodeId: string,
     public readonly personaId: string,
-    public readonly adminUserId: string
+    public readonly adminUserId: string,
   ) {}
 }

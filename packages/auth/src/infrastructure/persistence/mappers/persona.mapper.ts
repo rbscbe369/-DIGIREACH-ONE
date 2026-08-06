@@ -4,12 +4,17 @@ import { PersonaId, OrganizationId, RoleId } from '../../../domain/value-objects
 
 export class PersonaMapper {
   static toDomain(raw: PersonaModel): Persona {
-    const roleIds = Array.isArray(raw.roles) ? raw.roles.map((r: unknown) => new RoleId((r as Record<string, unknown>).roleId as string || r as string)) : [];
+    const roleIds = Array.isArray(raw.roles)
+      ? raw.roles.map(
+          (r: unknown) =>
+            new RoleId(((r as Record<string, unknown>).roleId as string) || (r as string)),
+        )
+      : [];
     return new Persona(
       new PersonaId(raw.id),
       new OrganizationId(raw.organizationId),
       raw.name,
-      roleIds
+      roleIds,
     );
   }
 
@@ -19,7 +24,7 @@ export class PersonaMapper {
       organizationId: persona.organizationId.value,
       name: persona.name,
       // In a real app, you'd map the relation to a join table format
-      roles: persona.roles.map(r => r.value)
+      roles: persona.roles.map((r) => r.value),
     };
   }
 }

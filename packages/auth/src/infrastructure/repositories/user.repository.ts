@@ -11,7 +11,6 @@ export class UserRepository extends BaseRepository<User, UserId> implements IUse
     super(prisma);
   }
 
-
   async findById(id: UserId): Promise<User | null> {
     const data = await this.prisma.user.findUnique({ where: { id: id.value } });
     return data ? UserMapper.toDomain(data) : null;
@@ -19,7 +18,7 @@ export class UserRepository extends BaseRepository<User, UserId> implements IUse
 
   async findByEmail(email: EmailAddress, organizationId: OrganizationId): Promise<User | null> {
     const data = await this.prisma.user.findFirst({
-      where: { email: email.value, organizationId: organizationId.value }
+      where: { email: email.value, organizationId: organizationId.value },
     });
     return data ? UserMapper.toDomain(data) : null;
   }
@@ -29,7 +28,7 @@ export class UserRepository extends BaseRepository<User, UserId> implements IUse
     await this.prisma.user.upsert({
       where: { id: data.id },
       update: data,
-      create: data
+      create: data,
     });
   }
 }

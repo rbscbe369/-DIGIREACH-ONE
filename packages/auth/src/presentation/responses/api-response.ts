@@ -25,21 +25,26 @@ export class ResponseHelper {
       data,
       metadata: {
         timestamp: new Date().toISOString(),
-        version: 'v1'
+        version: 'v1',
       },
-      traceId
+      traceId,
     };
   }
 
-  static error(code: string, message: string, details: unknown[] = [], traceId: string = ''): ErrorResponse {
+  static error(
+    code: string,
+    message: string,
+    details: unknown[] = [],
+    traceId: string = '',
+  ): ErrorResponse {
     return {
       success: false,
       error: {
         code,
         message,
-        details
+        details,
       },
-      traceId
+      traceId,
     };
   }
 }

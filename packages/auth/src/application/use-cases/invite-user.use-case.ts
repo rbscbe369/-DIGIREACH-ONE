@@ -12,7 +12,7 @@ export class InviteUserUseCase {
     private readonly userRepository: IUserRepository,
     private readonly organizationRepository: IOrganizationRepository,
     private readonly idGenerator: IIdGenerator,
-    private readonly eventPublisher: IEventPublisher
+    private readonly eventPublisher: IEventPublisher,
   ) {}
 
   async execute(command: InviteUserCommand): Promise<string> {

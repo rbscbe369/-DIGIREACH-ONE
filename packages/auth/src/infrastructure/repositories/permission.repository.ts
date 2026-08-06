@@ -5,11 +5,13 @@ import { Permission } from '../../domain/entities/permission.entity';
 import { PermissionId } from '../../domain/value-objects/id.vo';
 import { PermissionMapper } from '../persistence/mappers/permission.mapper';
 
-export class PermissionRepository extends BaseRepository<Permission, PermissionId> implements IPermissionRepository {
+export class PermissionRepository
+  extends BaseRepository<Permission, PermissionId>
+  implements IPermissionRepository
+{
   constructor(prisma: IPrismaClient) {
     super(prisma);
   }
-
 
   async findById(id: PermissionId): Promise<Permission | null> {
     const data = await this.prisma.permission.findUnique({ where: { id: id.value } });

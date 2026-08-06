@@ -5,7 +5,7 @@ export class Permission extends Entity<PermissionId> {
   constructor(
     id: PermissionId,
     public readonly claim: string,
-    public readonly description: string
+    public readonly description: string,
   ) {
     super(id);
   }

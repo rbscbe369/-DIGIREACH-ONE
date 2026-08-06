@@ -6,7 +6,7 @@ import { SessionId } from '../../domain/value-objects/id.vo';
 export class EndSessionUseCase {
   constructor(
     private readonly sessionRepository: ISessionRepository,
-    private readonly eventPublisher: IEventPublisher
+    private readonly eventPublisher: IEventPublisher,
   ) {}
 
   async execute(command: EndSessionCommand): Promise<void> {

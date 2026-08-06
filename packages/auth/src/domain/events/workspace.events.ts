@@ -5,8 +5,8 @@ export class WorkspaceAssigned implements DomainEvent {
   public readonly occurredOn = new Date();
   public readonly eventName = 'WorkspaceAssigned';
   constructor(
-    public readonly workspaceId: WorkspaceId, 
-    public readonly userId: UserId, 
-    public readonly nodeId: HierarchyNodeId
+    public readonly workspaceId: WorkspaceId,
+    public readonly userId: UserId,
+    public readonly nodeId: HierarchyNodeId,
   ) {}
 }

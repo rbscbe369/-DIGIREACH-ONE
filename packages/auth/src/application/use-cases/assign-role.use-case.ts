@@ -6,7 +6,7 @@ import { PersonaId, RoleId } from '../../domain/value-objects/id.vo';
 export class AssignRoleUseCase {
   constructor(
     private readonly personaRepository: IPersonaRepository,
-    private readonly roleRepository: IRoleRepository
+    private readonly roleRepository: IRoleRepository,
   ) {}
 
   async execute(command: AssignRoleCommand): Promise<void> {

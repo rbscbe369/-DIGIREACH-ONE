@@ -9,7 +9,7 @@ export class AssignWorkspaceUseCase {
   constructor(
     private readonly workspaceRepository: IWorkspaceRepository,
     private readonly idGenerator: IIdGenerator,
-    private readonly eventPublisher: IEventPublisher
+    private readonly eventPublisher: IEventPublisher,
   ) {}
 
   async execute(command: AssignWorkspaceCommand): Promise<string> {
@@ -18,7 +18,7 @@ export class AssignWorkspaceUseCase {
       wsId,
       new UserId(command.userId),
       new HierarchyNodeId(command.hierarchyNodeId),
-      new PersonaId(command.personaId)
+      new PersonaId(command.personaId),
     );
 
     await this.workspaceRepository.save(ws);

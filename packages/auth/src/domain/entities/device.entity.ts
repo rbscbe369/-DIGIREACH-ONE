@@ -8,13 +8,15 @@ export class Device extends Entity<DeviceId> {
     id: DeviceId,
     public readonly userId: UserId,
     public readonly fingerprint: string,
-    isTrusted: boolean = false
+    isTrusted: boolean = false,
   ) {
     super(id);
     this._isTrusted = isTrusted;
   }
 
-  get isTrusted(): boolean { return this._isTrusted; }
+  get isTrusted(): boolean {
+    return this._isTrusted;
+  }
 
   public revokeTrust(): void {
     this._isTrusted = false;
