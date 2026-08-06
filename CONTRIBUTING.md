@@ -19,6 +19,7 @@ We follow conventional commits. Please ensure your commit messages follow this f
 `type(scope): subject`
 
 Examples:
+
 - `feat(api): add user authentication endpoint`
 - `fix(web): resolve UI alignment issue on mobile`
 - `docs(readme): update installation instructions`

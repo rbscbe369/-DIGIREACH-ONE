@@ -1,0 +1,8 @@
+export enum ApprovalType {
+  SINGLE = 'SINGLE',
+  SEQUENTIAL = 'SEQUENTIAL',
+  PARALLEL = 'PARALLEL',
+  MAJORITY = 'MAJORITY',
+  UNANIMOUS = 'UNANIMOUS',
+  AUTO = 'AUTO',
+}

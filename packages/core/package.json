@@ -1,0 +1,22 @@
+{
+  "name": "@digireach-one/core",
+  "version": "0.6.0",
+  "description": "DIGIREACH ONE Platform Core (Organization Engine)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "fastify": "^5.0.0",
+    "zod": "^3.23.0",
+    "fastify-type-provider-zod": "^4.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "@types/node": "^22.5.4",
+    "eslint": "^9.10.0"
+  }
+}

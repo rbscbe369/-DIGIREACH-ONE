@@ -1,0 +1,6 @@
+export enum SecurityClassification {
+  PUBLIC = 'PUBLIC',
+  INTERNAL = 'INTERNAL',
+  CONFIDENTIAL = 'CONFIDENTIAL',
+  RESTRICTED = 'RESTRICTED',
+}

@@ -1,0 +1,8 @@
+export enum DocumentLifecycle {
+  UPLOADING = 'UPLOADING',
+  PROCESSING = 'PROCESSING',
+  READY = 'READY',
+  LOCKED = 'LOCKED',
+  ARCHIVED = 'ARCHIVED',
+  DELETED = 'DELETED',
+}

@@ -1,0 +1,6 @@
+export enum WorkflowType {
+  STATE_MACHINE = 'STATE_MACHINE',
+  SEQUENTIAL = 'SEQUENTIAL',
+  BPMN = 'BPMN',
+  RULES_DRIVEN = 'RULES_DRIVEN',
+}

@@ -1,0 +1,11 @@
+export enum NotificationCategory {
+  SECURITY = 'SECURITY',
+  SYSTEM = 'SYSTEM',
+  WORKFLOW = 'WORKFLOW',
+  APPROVAL = 'APPROVAL',
+  MARKETING = 'MARKETING',
+  REMINDER = 'REMINDER',
+  BILLING = 'BILLING',
+  AI = 'AI',
+  CUSTOM = 'CUSTOM',
+}
