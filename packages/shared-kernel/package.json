@@ -1,0 +1,17 @@
+{
+  "name": "@digireach-one/shared-kernel",
+  "version": "2.1.0",
+  "description": "Enterprise Shared Kernel",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.3.3"
+  }
+}
