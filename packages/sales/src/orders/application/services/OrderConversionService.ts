@@ -14,7 +14,7 @@ import { Quote } from '../../../quotes/domain/entities/Quote.entity';
 import { QuoteStatus } from '../../../quotes/domain/value-objects/QuoteStatus.vo';
 import { InvalidOrderTransitionError } from '../../domain/errors/InvalidOrderTransitionError';
 import { Money } from '@digireach-one/shared-kernel';
-import { OrderCreatedEvent } from '../../domain/events/OrderEvents';
+import { OrderCreatedEvent, OrderIntegrationEvents } from '../../domain/events/OrderEvents';
 
 export class OrderConversionService {
   constructor(
@@ -92,6 +92,7 @@ export class OrderConversionService {
 
       // 9. Outbox event
       const event = new OrderCreatedEvent(order.orderId, quote.quoteId);
+      order.addIntegrationEvent(OrderIntegrationEvents.orderCreated(order));
       const outboxMsg = new OutboxMessage(
         `outbox-msg-${Date.now()}`,
         `evt-${Date.now()}`,

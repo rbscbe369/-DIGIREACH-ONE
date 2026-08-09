@@ -4,10 +4,19 @@ import { QuoteTotals } from '../value-objects/QuoteTotals.vo';
 import { QuoteVersion } from './QuoteVersion.entity';
 import { QuoteLine } from './QuoteLine.entity';
 import { InvalidQuoteTransitionError } from '../errors/InvalidQuoteTransitionError';
+import { OutboxMessage } from '@digireach-one/core';
+import { QuoteIntegrationEvents } from '../events/QuoteEvents';
 
 export class Quote {
   private versions: QuoteVersion[] = [];
   private currentLines: Map<string, QuoteLine> = new Map();
+  private pendingIntegrationEvents: OutboxMessage[] = [];
+
+  public clearPendingIntegrationEvents(): OutboxMessage[] {
+    const events = [...this.pendingIntegrationEvents];
+    this.pendingIntegrationEvents = [];
+    return events;
+  }
 
   constructor(
     public readonly quoteId: string,
@@ -103,7 +112,11 @@ export class Quote {
       this.createVersion(); // Lock in snapshot
     }
 
+    const oldStatus = this.status;
     this.status = newStatus;
+    this.pendingIntegrationEvents.push(
+      QuoteIntegrationEvents.quoteStatusChanged(this, oldStatus, newStatus),
+    );
     this.updatedAt = new Date();
   }
 }

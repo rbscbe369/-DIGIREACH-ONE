@@ -110,17 +110,17 @@ export class Contract {
     this.updatedAt = new Date();
 
     if (newStatus === ContractStatus.Approved) {
-      this.addEvent(ContractEvents.contractApproved(this.contractId, this.tenantId));
+      this.addEvent(ContractEvents.contractApproved(this));
     } else if (newStatus === ContractStatus.Active) {
-      this.addEvent(ContractEvents.contractActivated(this.contractId, this.tenantId));
+      this.addEvent(ContractEvents.contractActivated(this));
     } else if (newStatus === ContractStatus.Suspended) {
-      this.addEvent(ContractEvents.contractSuspended(this.contractId, this.tenantId));
+      this.addEvent(ContractEvents.contractSuspended(this));
     } else if (newStatus === ContractStatus.Terminated) {
-      this.addEvent(ContractEvents.contractTerminated(this.contractId, this.tenantId));
+      this.addEvent(ContractEvents.contractTerminated(this));
     } else if (newStatus === ContractStatus.Cancelled) {
-      this.addEvent(ContractEvents.contractCancelled(this.contractId, this.tenantId));
+      this.addEvent(ContractEvents.contractCancelled(this));
     } else if (newStatus === ContractStatus.Expired) {
-      this.addEvent(ContractEvents.contractExpired(this.contractId, this.tenantId));
+      this.addEvent(ContractEvents.contractExpired(this));
     }
   }
 
@@ -136,7 +136,7 @@ export class Contract {
     // For now, we simulate renewal by creating a new version.
     this.createSnapshotVersion();
     this.updatedAt = new Date();
-    this.addEvent(ContractEvents.contractRenewed(this.contractId, this.tenantId));
+    this.addEvent(ContractEvents.contractRenewed(this));
   }
 
   public createSnapshotVersion(): void {
@@ -155,9 +155,7 @@ export class Contract {
     this.versions.set(nextVersion, snapshot);
     this.currentVersion = nextVersion;
     this.updatedAt = new Date();
-    this.addEvent(
-      ContractEvents.contractVersionCreated(this.contractId, nextVersion, this.tenantId),
-    );
+    this.addEvent(ContractEvents.contractVersionCreated(this, nextVersion));
   }
 
   public getVersion(versionNumber: number): ContractVersion | undefined {

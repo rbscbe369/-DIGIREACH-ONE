@@ -44,7 +44,7 @@ export class ContractService {
       );
 
       const events = contract.clearPendingEvents();
-      events.push(ContractEvents.contractCreated(contractId, tenantId));
+      events.push(ContractEvents.contractCreated(contract));
 
       await this.repository.save(contract);
       return contract;
@@ -83,7 +83,7 @@ export class ContractService {
       contract.transitionTo(ContractStatus.Active);
       await this.repository.save(contract);
       const events = contract.clearPendingEvents();
-      events.push(ContractEvents.contractResumed(contractId, tenantId));
+      events.push(ContractEvents.contractResumed(contract));
     });
   }
 

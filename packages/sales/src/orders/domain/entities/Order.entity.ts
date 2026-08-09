@@ -3,9 +3,22 @@ import { OrderTotals } from '../value-objects/OrderTotals.vo';
 import { OrderLine } from './OrderLine.entity';
 import { InvalidOrderTransitionError } from '../errors/InvalidOrderTransitionError';
 import { Money } from '@digireach-one/shared-kernel';
+import { OutboxMessage } from '@digireach-one/core';
+import { OrderIntegrationEvents } from '../events/OrderEvents';
 
 export class Order {
   private currentLines: Map<string, OrderLine> = new Map();
+  private pendingIntegrationEvents: OutboxMessage[] = [];
+
+  public clearPendingIntegrationEvents(): OutboxMessage[] {
+    const events = [...this.pendingIntegrationEvents];
+    this.pendingIntegrationEvents = [];
+    return events;
+  }
+
+  public addIntegrationEvent(event: OutboxMessage): void {
+    this.pendingIntegrationEvents.push(event);
+  }
 
   constructor(
     public readonly orderId: string,
@@ -75,7 +88,11 @@ export class Order {
     if (newStatus === OrderStatus.Completed) this.completedAt = now;
     if (newStatus === OrderStatus.Cancelled) this.cancelledAt = now;
 
+    const oldStatus = this.status;
     this.status = newStatus;
+    this.pendingIntegrationEvents.push(
+      OrderIntegrationEvents.orderStatusChanged(this, oldStatus, newStatus),
+    );
     this.updatedAt = now;
   }
 }

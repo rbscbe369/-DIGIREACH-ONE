@@ -1,25 +1,38 @@
 import { OutboxMessage, OutboxMessageStatus } from '@digireach-one/core';
+import { Contract } from '../entities/Contract.entity';
 
 export class ContractEvents {
   static createEvent(
     type: string,
-    contractId: string,
-    tenantId: string,
-    payload: Record<string, unknown>,
+    contract: Contract,
+    payloadOverrides: Record<string, unknown> = {},
     correlationId?: string,
     causationId?: string,
   ): OutboxMessage {
+    const payload = {
+      contractId: contract.contractId,
+      contractNumber: contract.contractNumber,
+      tenantId: contract.tenantId,
+      organizationId: contract.organizationId,
+      status: contract.status,
+      currency: contract.totals?.totalOneTimeValue.currencyCode || 'USD',
+      totalOneTimeValueMinorUnits: contract.totals?.totalOneTimeValue.minorUnits || 0,
+      totalRecurringValueMinorUnits: contract.totals?.totalRecurringValue.minorUnits || 0,
+      recurrencePeriod: contract.totals?.recurrencePeriod || 'None',
+      ...payloadOverrides,
+    };
+
     return new OutboxMessage(
       Math.random().toString(36).substring(2, 15),
       Math.random().toString(36).substring(2, 15),
       type,
-      contractId,
+      contract.contractId,
       'Contract',
       JSON.stringify(payload),
       null,
       correlationId || null,
       causationId || null,
-      tenantId,
+      contract.tenantId,
       new Date(),
       new Date(),
       OutboxMessageStatus.Pending,
@@ -30,46 +43,43 @@ export class ContractEvents {
     );
   }
 
-  static contractCreated(contractId: string, tenantId: string) {
-    return this.createEvent('ContractCreated', contractId, tenantId, { contractId });
+  static contractCreated(contract: Contract) {
+    return this.createEvent('ContractCreated', contract);
   }
 
-  static contractApproved(contractId: string, tenantId: string) {
-    return this.createEvent('ContractApproved', contractId, tenantId, { contractId });
+  static contractApproved(contract: Contract) {
+    return this.createEvent('ContractApproved', contract);
   }
 
-  static contractActivated(contractId: string, tenantId: string) {
-    return this.createEvent('ContractActivated', contractId, tenantId, { contractId });
+  static contractActivated(contract: Contract) {
+    return this.createEvent('ContractActivated', contract);
   }
 
-  static contractSuspended(contractId: string, tenantId: string) {
-    return this.createEvent('ContractSuspended', contractId, tenantId, { contractId });
+  static contractSuspended(contract: Contract) {
+    return this.createEvent('ContractSuspended', contract);
   }
 
-  static contractResumed(contractId: string, tenantId: string) {
-    return this.createEvent('ContractResumed', contractId, tenantId, { contractId });
+  static contractResumed(contract: Contract) {
+    return this.createEvent('ContractResumed', contract);
   }
 
-  static contractTerminated(contractId: string, tenantId: string) {
-    return this.createEvent('ContractTerminated', contractId, tenantId, { contractId });
+  static contractTerminated(contract: Contract) {
+    return this.createEvent('ContractTerminated', contract);
   }
 
-  static contractCancelled(contractId: string, tenantId: string) {
-    return this.createEvent('ContractCancelled', contractId, tenantId, { contractId });
+  static contractCancelled(contract: Contract) {
+    return this.createEvent('ContractCancelled', contract);
   }
 
-  static contractExpired(contractId: string, tenantId: string) {
-    return this.createEvent('ContractExpired', contractId, tenantId, { contractId });
+  static contractExpired(contract: Contract) {
+    return this.createEvent('ContractExpired', contract);
   }
 
-  static contractRenewed(contractId: string, tenantId: string) {
-    return this.createEvent('ContractRenewed', contractId, tenantId, { contractId });
+  static contractRenewed(contract: Contract) {
+    return this.createEvent('ContractRenewed', contract);
   }
 
-  static contractVersionCreated(contractId: string, version: number, tenantId: string) {
-    return this.createEvent('ContractVersionCreated', contractId, tenantId, {
-      contractId,
-      version,
-    });
+  static contractVersionCreated(contract: Contract, version: number) {
+    return this.createEvent('ContractVersionCreated', contract, { version });
   }
 }
